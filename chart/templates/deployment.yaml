@@ -52,6 +52,9 @@ spec:
         resources: {{- toYaml .Values.controller.kubeRbacProxy.resources | nindent 10 }}
         securityContext:
           allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
       - name: manager
         args:
         - --health-probe-bind-address=:8081
@@ -96,6 +99,9 @@ spec:
         resources: {{- toYaml .Values.controller.manager.resources | nindent 10 }}
         securityContext:
           allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
         volumeMounts:
         - mountPath: /var/run/podinfo
           name: podinfo
