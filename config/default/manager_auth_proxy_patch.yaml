@@ -38,6 +38,8 @@ spec:
             memory: 64Mi
       - name: manager
         securityContext:
+          seccompProfile:
+            type: RuntimeDefault
           capabilities:
             drop:
               - "ALL"
